@@ -1,0 +1,15 @@
+[package]
+name = "pypassrs"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "pypassrs"
+crate-type = ["cdylib"]
+
+[dependencies]
+passrs = "0.5"
+
+[dependencies.cpython]
+version = "0.7"
+features = ["extension-module"]
