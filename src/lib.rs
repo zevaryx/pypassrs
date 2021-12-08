@@ -121,15 +121,18 @@ fn generate(
     force: bool,
     length: usize,
     path: Option<String>,
-) -> PyResult<String> {
-    let result = passrs::password::generate(path, symbols, false, qr, force, length);
+) -> PyResult<Option<String>> {
+    let result = passrs::password::generate(path.to_owned(), symbols, false, qr, force, length);
     match result {
         Ok(r) => match r {
-            Some(p) => Ok(p),
-            None => Err(PyErr::new::<exc::Exception, _>(
-                _py,
-                "Failed to generate password",
-            )),
+            Some(p) => Ok(Some(p)),
+            None => match path {
+                Some(_) => Ok(None),
+                None => Err(PyErr::new::<exc::Exception, _>(
+                    _py,
+                    "Failed to generate password",
+                )),
+            },
         },
         Err(e) => Err(PyErr::new::<exc::Exception, _>(_py, e.to_string())),
     }
