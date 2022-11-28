@@ -8,7 +8,7 @@ readme = Path("README.md").read_text()
 
 setup(
     name="pypassrs",
-    version="0.5.4",
+    version="0.5.5",
     description="Python wrapper for passrs",
     author="Casey Burklow",
     author_email="zevaryx@gmail.com",
@@ -30,5 +30,6 @@ setup(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3 :: Only",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11"
     ],
 )
